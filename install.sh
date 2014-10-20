@@ -4,7 +4,7 @@ echo 'update, upgrade and install'
 sudo apt-get update
 sudo apt-get upgrade --assume-yes
 sudo apt-get install --assume-yes apache2 apache2-mpm-worker apache2-utils apache2.2-bin apache2.2-common libapr1 libaprutil1 libaprutil1-dbd-sqlite3 build-essential python3.2 python-dev libpython3.2 python3-minimal libapache2-mod-wsgi libaprutil1-ldap memcached python-cairo-dev python-django python-ldap python-memcache python-pysqlite2 sqlite3 erlang-os-mon erlang-snmp rabbitmq-server bzr expect libapache2-mod-python python-setuptools
-sudo easy_install django-tagging zope.interface twisted txamqp
+sudo easy_install django-tagging==0.3.1 zope.interface twisted txamqp
 
 echo 'wget and extract graphite, carbon and whisper'
 cd ~
@@ -37,10 +37,10 @@ echo 'pattern = .*' >> storage-schemas.conf
 echo 'retentions = 10:2160,60:10080,600:262974' >> storage-schemas.conf
 cd /opt/graphite/webapp/graphite/
 
-echo 'install 0.3.1 django-tagging'
+# echo 'install 0.3.1 django-tagging'
 # https://www.digitalocean.com/community/tutorials/installing-and-configuring-graphite-and-statsd-on-an-ubuntu-12-04-vps#comment_10382
-sudo pip uninstall django-tagging 
-sudo pip install django-tagging==0.3.1
+# sudo pip uninstall django-tagging 
+# sudo pip install django-tagging==0.3.1
 
 echo 'manage database'
 sudo python manage.py syncdb
