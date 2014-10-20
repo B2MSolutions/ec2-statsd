@@ -31,10 +31,10 @@ sudo python setup.py install
 echo 'configure graphite'
 cd /opt/graphite/conf
 sudo cp carbon.conf.example carbon.conf
-echo '[stats]' > storage-schemas.conf
-echo 'priority = 110' >> storage-schemas.conf
-echo 'pattern = .*' >> storage-schemas.conf
-echo 'retentions = 10:2160,60:10080,600:262974' >> storage-schemas.conf
+sudo echo '[stats]' > storage-schemas.conf
+sudo echo 'priority = 110' >> storage-schemas.conf
+sudo echo 'pattern = .*' >> storage-schemas.conf
+sudo echo 'retentions = 10:2160,60:10080,600:262974' >> storage-schemas.conf
 cd /opt/graphite/webapp/graphite/
 
 # echo 'install 0.3.1 django-tagging'
