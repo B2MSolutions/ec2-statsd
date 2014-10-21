@@ -1,4 +1,6 @@
 #!/bin/bash -v
+exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
+
 set -e
 echo 'update, upgrade and install'
 sudo apt-get update
