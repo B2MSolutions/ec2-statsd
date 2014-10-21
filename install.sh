@@ -1,5 +1,4 @@
 #!/bin/bash -v
-sudo exec > sudo >(sudo tee /var/log/user-data.log | sudo logger -t user-data -s) 2>&1
 
 set -e
 echo 'update, upgrade and install'
@@ -7,7 +6,7 @@ sudo sed -i 's/us-east-1\.ec2\.//g' /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get upgrade --assume-yes
 sudo apt-get install --assume-yes apache2 apache2-mpm-worker apache2-utils apache2.2-bin apache2.2-common libapr1 libaprutil1 libaprutil1-dbd-sqlite3 build-essential python3.2 python-dev libpython3.2 python3-minimal libapache2-mod-wsgi libaprutil1-ldap memcached python-cairo-dev python-django python-ldap python-memcache python-pysqlite2 sqlite3 erlang-os-mon erlang-snmp rabbitmq-server bzr expect libapache2-mod-python python-setuptools expect
-sudo easy_install django-tagging==0.3.1 zope.interface twisted txamqp expect
+sudo easy_install django-tagging==0.3.1 zope.interface twisted txamqp
 
 echo 'wget and extract graphite, carbon and whisper'
 cd ~
