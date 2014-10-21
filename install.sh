@@ -48,7 +48,8 @@ cd /opt/graphite/webapp/graphite/
 # sudo pip install django-tagging==0.3.1
 
 echo 'manage database'
-expect -c 'spawn sudo python manage.py syncdb; expect now ; send \"yes\n\" ; interact'
+exit 1
+expect -c 'spawn sudo python manage.py syncdb; expect now ; send yes\n ; interact'
 sudo cp local_settings.py.example local_settings.py
 sudo cp ~/graphite*/examples/example-graphite-vhost.conf /etc/apache2/sites-available/default
 sudo cp /opt/graphite/conf/graphite.wsgi.example /opt/graphite/conf/graphite.wsgi
