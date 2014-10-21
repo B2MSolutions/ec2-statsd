@@ -33,7 +33,6 @@ sudo python setup.py install
 echo 'configure graphite'
 cd /opt/graphite/conf
 sudo cp carbon.conf.example carbon.conf
-# echo 'text' | sudo tee -a /file.txt
 echo '[stats]' | sudo tee storage-schemas.conf
 echo 'priority = 110' | sudo tee -a storage-schemas.conf
 echo 'pattern = .*' | sudo tee -a storage-schemas.conf
@@ -41,14 +40,9 @@ echo 'retentions = 10:2160,60:10080,600:262974' | sudo tee -a storage-schemas.co
 
 cd /opt/graphite/webapp/graphite/
 
-# echo 'install 0.3.1 django-tagging'
-# https://www.digitalocean.com/community/tutorials/installing-and-configuring-graphite-and-statsd-on-an-ubuntu-12-04-vps#comment_10382
-# sudo pip uninstall django-tagging 
-# sudo pip install django-tagging==0.3.1
-
 echo 'manage database'
-exit 1
-expect -c 'spawn sudo python manage.py syncdb; expect now ; send yes\n ; interact'
+sudo cp /initial_data.json .
+sudo python manage.py syncdb --noinput
 sudo cp local_settings.py.example local_settings.py
 sudo cp ~/graphite*/examples/example-graphite-vhost.conf /etc/apache2/sites-available/default
 sudo cp /opt/graphite/conf/graphite.wsgi.example /opt/graphite/conf/graphite.wsgi
