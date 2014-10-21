@@ -48,3 +48,26 @@ sudo cp ~/graphite*/examples/example-graphite-vhost.conf /etc/apache2/sites-avai
 sudo cp /opt/graphite/conf/graphite.wsgi.example /opt/graphite/conf/graphite.wsgi
 sudo chown -R www-data:www-data /opt/graphite/storage
 sudo mkdir -p /etc/httpd/wsgi
+
+echo 'configure apache'
+sudo sed -i 's|WSGISocketPrefix run/wsgi|WSGISocketPrefix /etc/httpd/wsgi|g'
+sudo sed -i 's|ServerName graphite|ServerName monitor.elemez.com|g'
+sudo service apache2 restart
+
+echo 'install statsd'
+sudo apt-get install python-software-properties
+sudo apt-add-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs git
+cd /opt
+sudo git clone git://github.com/etsy/statsd.git
+
+echo '{ graphitePort: 2003, graphiteHost: "127.0.0.1", port: 8125 }' | sudo tee statsd/localConfig.js
+
+echo 'starting services'
+sudo /opt/graphite/bin/carbon-cache.py start
+
+cd /opt/statsd
+node ./stats.js ./localConfig.js
+
+echo 'finished'
