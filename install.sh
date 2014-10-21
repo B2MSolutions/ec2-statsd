@@ -50,8 +50,8 @@ sudo chown -R www-data:www-data /opt/graphite/storage
 sudo mkdir -p /etc/httpd/wsgi
 
 echo 'configure apache'
-sudo sed -i 's|WSGISocketPrefix run/wsgi|WSGISocketPrefix /etc/httpd/wsgi|g'
-sudo sed -i 's|ServerName graphite|ServerName monitor.elemez.com|g'
+sudo sed -i 's|WSGISocketPrefix run/wsgi|WSGISocketPrefix /etc/httpd/wsgi|g' /etc/apache2/sites-available/default
+sudo sed -i 's|ServerName graphite|ServerName monitor.elemez.com|g' /etc/apache2/sites-available/default
 sudo service apache2 restart
 
 echo 'install statsd'
