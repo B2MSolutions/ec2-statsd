@@ -6,7 +6,7 @@ sudo sed -i 's/us-east-1\.ec2\.//g' /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get upgrade --assume-yes
 sudo apt-get install --assume-yes apache2 apache2-mpm-worker apache2-utils apache2.2-bin apache2.2-common libapr1 libaprutil1 libaprutil1-dbd-sqlite3 build-essential python3.2 python-dev libpython3.2 python3-minimal libapache2-mod-wsgi libaprutil1-ldap memcached python-cairo-dev python-django python-ldap python-memcache python-pysqlite2 sqlite3 erlang-os-mon erlang-snmp rabbitmq-server bzr expect libapache2-mod-python python-setuptools expect
-sudo easy_install django-tagging==0.3.1 zope.interface twisted txamqp
+sudo easy_install django-tagging==0.3.1 zope.interface twisted==11.1.0 txamqp
 
 echo 'wget and extract graphite, carbon and whisper'
 cd ~
@@ -56,9 +56,9 @@ sudo service apache2 restart
 
 echo 'install statsd'
 sudo apt-get install python-software-properties
-sudo apt-add-repository ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get install nodejs git
+sudo apt-add-repository ppa:chris-lea/node.js -y
+sudo apt-get update --assume-yes
+sudo apt-get install nodejs git --assume-yes
 cd /opt
 sudo git clone git://github.com/etsy/statsd.git
 
@@ -68,6 +68,6 @@ echo 'starting services'
 sudo /opt/graphite/bin/carbon-cache.py start
 
 cd /opt/statsd
+echo 'starting statsd server'
 node ./stats.js ./localConfig.js
 
-echo 'finished'
