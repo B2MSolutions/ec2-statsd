@@ -8,6 +8,8 @@ sudo apt-get upgrade --assume-yes
 sudo apt-get install --assume-yes apache2 apache2-mpm-worker apache2-utils apache2.2-bin apache2.2-common libapr1 libaprutil1 libaprutil1-dbd-sqlite3 build-essential python3.2 python-dev libpython3.2 python3-minimal libapache2-mod-wsgi libaprutil1-ldap memcached python-cairo-dev python-django python-ldap python-memcache python-pysqlite2 sqlite3 erlang-os-mon erlang-snmp rabbitmq-server bzr expect libapache2-mod-python python-setuptools expect
 sudo easy_install django-tagging==0.3.1 zope.interface twisted==11.1.0 txamqp
 
+sudo ln -s /mnt /opt/graphite
+
 echo 'wget and extract graphite, carbon and whisper'
 cd ~
 wget https://launchpad.net/graphite/0.9/0.9.10/+download/graphite-web-0.9.10.tar.gz
